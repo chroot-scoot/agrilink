@@ -1,4 +1,4 @@
-import { SideBarWide } from './sidebar-wide';
+import { SideBarWide } from './components/sidebar-wide';
 import { SideBarMobile } from './components/sidebar-mobile';
 import { AccountMenu } from './components/account-dropdown';
 import { SearchBar } from './components/serch-bar';
