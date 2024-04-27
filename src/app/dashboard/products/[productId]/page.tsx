@@ -66,24 +66,24 @@ export default async function Dashboard({ params }: { params: any }) {
                   </Button>
                 </Link>
                 <h1 className="flex-1 shrink-0 whitespace-nowrap text-xl font-semibold tracking-tight sm:grow-0">
-                  {product_profiles[0].product_name}
+                  {product_profiles![0].product_name}
                 </h1>
-                {product_profiles[0].is_organic && (
+                {product_profiles![0].is_organic && (
                   <Badge variant="outline" className="ml-auto sm:ml-0">
                     Organic
                   </Badge>
                 )}
-                {product_profiles[0].is_seasonal && (
+                {product_profiles![0].is_seasonal && (
                   <Badge variant="outline" className="ml-auto sm:ml-0">
                     Seasonal
                   </Badge>
                 )}
-                {product_profiles[0].product_inventory === 0 && (
+                {product_profiles![0].product_inventory === 0 && (
                   <Badge variant="destructive" className="ml-auto sm:ml-0">
                     Out of Stock
                   </Badge>
                 )}
-                {product_profiles[0].product_inventory != 0 && (
+                {product_profiles![0].product_inventory != 0 && (
                   <Badge variant="outline" className="ml-auto sm:ml-0">
                     In Stock
                   </Badge>
@@ -101,7 +101,7 @@ export default async function Dashboard({ params }: { params: any }) {
                     <CardHeader>
                       <CardTitle>Product Details</CardTitle>
                       <CardDescription>
-                        {product_profiles[0].about_product}
+                        {product_profiles![0].about_product}
                       </CardDescription>
                     </CardHeader>
                     <CardContent>
@@ -112,14 +112,14 @@ export default async function Dashboard({ params }: { params: any }) {
                             id="name"
                             type="text"
                             className="w-full"
-                            defaultValue={product_profiles[0].product_name}
+                            defaultValue={product_profiles![0].product_name}
                           />
                         </div>
                         <div className="grid gap-3">
                           <Label htmlFor="description">Description</Label>
                           <Textarea
                             id="description"
-                            defaultValue={product_profiles[0].about_product}
+                            defaultValue={product_profiles![0].about_product}
                             className="min-h-32"
                           />
                         </div>
@@ -207,12 +207,12 @@ export default async function Dashboard({ params }: { params: any }) {
                     <CardHeader>
                       <CardTitle>Rating of Product</CardTitle>
                       <CardDescription>
-                        {product_profiles[0].product_inventory} out of 5
+                        {product_profiles![0].product_inventory} out of 5
                       </CardDescription>
                     </CardHeader>
                     <CardContent className="flex">
                       {Array.from({
-                        length: product_profiles[0].product_inventory,
+                        length: product_profiles![0].product_inventory / 100,
                       }).map((_, idx) => (
                         <Star key={idx} />
                       ))}
