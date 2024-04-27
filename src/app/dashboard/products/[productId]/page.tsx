@@ -49,7 +49,7 @@ export default async function Dashboard({ params }: { params: any }) {
   let { data: product_profiles, error } = await supabase
     .from('product_profiles')
     .select('*')
-    .eq('product_name', 'mango');
+    .eq('product_id', params.productId);
   console.log(product_profiles);
 
   return (
