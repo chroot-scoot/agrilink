@@ -10,9 +10,7 @@ export default function page() {
     <ScrollArea className="h-full">
       <div className="flex-1 space-y-4 p-4 pt-6 md:p-8">
         <div className="flex flex-col items-center justify-between space-y-2 md:flex-row">
-          <h2 className="text-3xl font-bold tracking-tight">
-            Hi, Welcome back 👋
-          </h2>
+          <h2 className="text-3xl font-bold tracking-tight">Analytics</h2>
           <div className="hidden items-center space-x-2 md:flex">
             <CalendarDateRangePicker />
             <Button>Download</Button>
