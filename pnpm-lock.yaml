@@ -97,9 +97,6 @@ importers:
       '@radix-ui/react-tooltip':
         specifier: ^1.0.7
         version: 1.0.7(@types/react-dom@18.3.0)(@types/react@18.3.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
-      '@supabase/auth-helpers-nextjs':
-        specifier: ^0.10.0
-        version: 0.10.0(@supabase/supabase-js@2.42.7)
       '@supabase/ssr':
         specifier: ^0.3.0
         version: 0.3.0(@supabase/supabase-js@2.42.7)
@@ -1505,22 +1502,6 @@ packages:
       {
         integrity: sha512-hw437iINopmQuxWPSUEvqE56NCPsiU8N4AYtfHmJFckclktzK9YQJieD3XkDCDH4OjL+C7zgPUh73R/nrcHrqw==,
       }
-
-  '@supabase/auth-helpers-nextjs@0.10.0':
-    resolution:
-      {
-        integrity: sha512-2dfOGsM4yZt0oS4TPiE7bD4vf7EVz7NRz/IJrV6vLg0GP7sMUx8wndv2euLGq4BjN9lUCpu6DG/uCC8j+ylwPg==,
-      }
-    peerDependencies:
-      '@supabase/supabase-js': ^2.39.8
-
-  '@supabase/auth-helpers-shared@0.7.0':
-    resolution:
-      {
-        integrity: sha512-FBFf2ei2R7QC+B/5wWkthMha8Ca2bWHAndN+syfuEUUfufv4mLcAgBCcgNg5nJR8L0gZfyuaxgubtOc9aW3Cpg==,
-      }
-    peerDependencies:
-      '@supabase/supabase-js': ^2.39.8
 
   '@supabase/auth-js@2.64.1':
     resolution:
@@ -3685,6 +3666,7 @@ packages:
       }
     hasBin: true
 
+<<<<<<< HEAD
   jotai@2.8.0:
     resolution:
       {
@@ -3700,6 +3682,8 @@ packages:
       react:
         optional: true
 
+=======
+>>>>>>> da83854 (chore: remove dependency)
   joycon@3.1.1:
     resolution:
       {
@@ -4906,12 +4890,6 @@ packages:
     resolution:
       {
         integrity: sha512-qepMx2JxAa5jjfzxG79yPPq+8BuFToHd1hm7kI+Z4zAq1ftQiP7HcxMhDDItrbtwVeLg/cY2JnKnrcFkmiswNA==,
-      }
-
-  set-cookie-parser@2.6.0:
-    resolution:
-      {
-        integrity: sha512-RVnVQxTXuerk653XfuliOxBP81Sf0+qfQE73LIYKcyMYHG94AuH0kgrQpRDuTZnSmjpysHmzxJXKNfa6PjFhyQ==,
       }
 
   set-function-length@1.2.2:
@@ -6590,17 +6568,6 @@ snapshots:
 
   '@rushstack/eslint-patch@1.10.2': {}
 
-  '@supabase/auth-helpers-nextjs@0.10.0(@supabase/supabase-js@2.42.7)':
-    dependencies:
-      '@supabase/auth-helpers-shared': 0.7.0(@supabase/supabase-js@2.42.7)
-      '@supabase/supabase-js': 2.42.7
-      set-cookie-parser: 2.6.0
-
-  '@supabase/auth-helpers-shared@0.7.0(@supabase/supabase-js@2.42.7)':
-    dependencies:
-      '@supabase/supabase-js': 2.42.7
-      jose: 4.15.5
-
   '@supabase/auth-js@2.64.1':
     dependencies:
       '@supabase/node-fetch': 2.6.15
@@ -7997,11 +7964,14 @@ snapshots:
 
   jiti@1.21.0: {}
 
+<<<<<<< HEAD
   jotai@2.8.0(@types/react@18.3.0)(react@18.3.0):
     optionalDependencies:
       '@types/react': 18.3.0
       react: 18.3.0
 
+=======
+>>>>>>> da83854 (chore: remove dependency)
   joycon@3.1.1: {}
 
   js-tokens@4.0.0: {}
@@ -8662,8 +8632,6 @@ snapshots:
       type-fest: 0.20.2
 
   server-only@0.0.1: {}
-
-  set-cookie-parser@2.6.0: {}
 
   set-function-length@1.2.2:
     dependencies:
