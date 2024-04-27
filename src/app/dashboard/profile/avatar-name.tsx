@@ -3,8 +3,6 @@ import { createClient } from '@/lib/supabase/server';
 import { Icon } from '@radix-ui/react-select';
 
 export default function AboutStoreTile() {
-  // const supabase = createClient();
-  // const { data: profiles } = await supabase.from('profiles').select();
   return (
     <>
       <div className="flex flex-col md:flex-row">
