@@ -16,7 +16,7 @@ export default function page() {
             <Button>Download</Button>
           </div>
         </div>
-        <Tabs defaultValue="overview" className="space-y-4">
+        <Tabs defaultValue="analytics" className="space-y-4">
           <TabsList>
             <TabsTrigger value="analytics">Analytics</TabsTrigger>
             <TabsTrigger value="overview">Overview</TabsTrigger>
