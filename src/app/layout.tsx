@@ -3,8 +3,8 @@ import { GeistSans } from 'geist/font/sans';
 import './globals.css';
 
 export const metadata: Metadata = {
-  title: 'Next Template',
-  description: 'Next Template for chroot scoot team',
+  title: 'AgriLink',
+  description: 'A Platform for collaboration and betterment of Farmers',
 };
 
 export default function RootLayout({
