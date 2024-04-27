@@ -1,12 +1,12 @@
 import Image from 'next/image';
 import { createClient } from '@/lib/supabase/server';
 
-export default async function AboutStoreTile() {
-  const supabase = createClient();
-  const { data: profiles } = await supabase.from('profiles').select();
+export default function AboutStoreTile() {
+  // const supabase = createClient();
+  // const { data: profiles } = await supabase.from('profiles').select();
   return (
     <>
-      <div className="h-48 w-48 min-w-48 p-2">
+      <div className="h-48 w-48 min-w-48">
         <Image
           src="/store-front.png"
           /* MAKE RESPONSIVE */
@@ -14,7 +14,8 @@ export default async function AboutStoreTile() {
           width={16}
           height={16}
           layout="responsive"
-          className="rounded-full"
+          className="rounded-lg"
+          style={{ borderRadius: '1rem', border: '2px solid #00684A' }}
         />
       </div>
 
