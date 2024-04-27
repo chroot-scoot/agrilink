@@ -8,12 +8,11 @@ import {
   CommandList,
 } from '@/components/ui/command';
 import {
-  Hospital,
-  Bed,
-  CalendarCheck,
-  UserPlus,
-  CalendarPlus,
-  Radio,
+  PieChart,
+  Handshake,
+  Gem,
+  Warehouse,
+  PackageSearch,
   Bell,
   Settings,
   LogOut,
@@ -23,96 +22,67 @@ import Link from 'next/link';
 export default function Sidebar() {
   const menuItemsList = [
     {
-      group: 'IV Control',
-      items: [
-        {
-          name: 'All Beds',
-          icon: <Bed />,
-          path: '/ivs',
-        },
-        {
-          name: 'Connect New',
-          icon: <Radio />,
-          path: '/ivs/add',
-        },
-      ],
+      name: 'Products',
+      icon: <PackageSearch />,
+      path: '/dashboard/products',
     },
     {
-      group: 'Patients',
-      items: [
-        {
-          name: 'All Patients',
-          icon: <Hospital />,
-          path: '/patients',
-        },
-        {
-          name: 'Add New',
-          icon: <UserPlus />,
-          path: '/patients/add',
-        },
-      ],
+      name: 'Analytics',
+      icon: <PieChart />,
+      path: '/dashboard/analytics',
     },
     {
-      group: 'Appointments',
-      items: [
-        {
-          name: 'All Appointments',
-          icon: <CalendarCheck />,
-          path: '/appointments',
-        },
-        {
-          name: 'Create New',
-          icon: <CalendarPlus />,
-          path: '/appointments/add',
-        },
-      ],
+      name: 'Benefits',
+      icon: <Gem />,
+      path: '/dashboard/benefits',
+    },
+    {
+      name: 'Community',
+      icon: <Handshake />,
+      path: '/dashboard/community',
+    },
+    {
+      name: 'Inventory',
+      icon: <Warehouse />,
+      path: '#',
     },
   ];
   const settingsItemsList = [
     {
-      group: 'Settings',
-      items: [
-        {
-          name: 'Notifications',
-          icon: <Bell size={20} strokeWidth={1} />,
-          path: '/notifications',
-        },
-        {
-          name: 'Settings',
-          icon: <Settings size={20} strokeWidth={1} />,
-          path: '/settings',
-        },
-        {
-          name: 'Logout',
-          icon: <LogOut size={20} strokeWidth={1} />,
-          path: '/logout',
-        },
-      ],
+      name: 'Notifications',
+      icon: <Bell size={20} strokeWidth={1} />,
+      path: '#',
+    },
+    {
+      name: 'Settings',
+      icon: <Settings size={20} strokeWidth={1} />,
+      path: '#',
+    },
+    {
+      name: 'Logout',
+      icon: <LogOut size={20} strokeWidth={1} />,
+      path: '/logout',
     },
   ];
 
   return (
-    <div className="fixed flex min-h-screen w-[300px] min-w-[300px] flex-col gap-4 p-4">
+    <div className="min-w-1/5 fixed flex min-h-screen w-1/5 flex-col gap-4 p-4">
       <div>
         <UserItem />
       </div>
       <div className="grow">
         <Command style={{ overflow: 'visible' }}>
           <CommandList style={{ overflow: 'visible' }}>
-            {menuItemsList.map((menu: any, key: number) => (
-              <CommandGroup key={key} heading={menu.group}>
-                {menu.items.map((option: any, optionKey: number) => (
-                  <Link href={option.path} key={optionKey}>
-                    <CommandItem
-                      key={optionKey}
-                      className="flex cursor-pointer gap-2"
-                    >
-                      {option.icon}
-                      {option.name}
-                    </CommandItem>
-                  </Link>
-                ))}
-              </CommandGroup>
+            {menuItemsList.map((option: any, optionKey: number) => (
+              <Link href={option.path} key={optionKey}>
+                <CommandItem
+                  key={optionKey}
+                  className="flex cursor-pointer gap-2"
+                >
+                  {option.icon}
+                  {option.name}
+                </CommandItem>
+              </Link>
             ))}
           </CommandList>
         </Command>
@@ -121,20 +91,16 @@ export default function Sidebar() {
       <div>
         <Command style={{ overflow: 'visible' }}>
           <CommandList style={{ overflow: 'visible' }}>
-            {settingsItemsList.map((menu: any, key: number) => (
-              <CommandGroup key={key}>
-                {menu.items.map((option: any, optionKey: number) => (
-                  <Link href={option.path} key={optionKey}>
-                    <CommandItem
-                      key={optionKey}
-                      className="flex cursor-pointer gap-2 text-sm text-gray-600"
-                    >
-                      {option.icon}
-                      {option.name}
-                    </CommandItem>
-                  </Link>
-                ))}
-              </CommandGroup>
+            {settingsItemsList.map((option: any, optionKey: number) => (
+              <Link href={option.path} key={optionKey}>
+                <CommandItem
+                  key={optionKey}
+                  className="flex cursor-pointer gap-2 text-sm text-gray-600"
+                >
+                  {option.icon}
+                  {option.name}
+                </CommandItem>
+              </Link>
             ))}
           </CommandList>
         </Command>
