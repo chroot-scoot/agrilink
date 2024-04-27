@@ -1,5 +1,5 @@
-import { CalendarDateRangePicker } from '@/app/dashboard/analytics/components/date-range-picker';
-import { RecentSales } from '@/components/recent-sales';
+import { CalendarDateRangePicker } from './date-range-picker';
+import { RecentSales } from './recent-sales';
 import { Button } from '@/components/ui/button';
 import {
   Card,
@@ -25,7 +25,6 @@ export default function page() {
             <Button>Download</Button>
           </div>
         </div>
-        git push --set-upstream origin analytics
         <Tabs defaultValue="overview" className="space-y-4">
           <TabsList>
             <TabsTrigger value="overview">Overview</TabsTrigger>
