@@ -1,14 +1,8 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from '@/components/ui/card';
-import { llmResponse } from './llm';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { llmResponse } from '../../../api/llm/llm';
 
 export function Overview() {
   const [summary, setSummary] = useState(null);

@@ -1,10 +1,9 @@
-import { CalendarDateRangePicker } from './date-range-picker';
-import { Analytics } from './analytic';
-import { Overview } from './overview';
+import { CalendarDateRangePicker } from './components/date-range-picker';
+import { Analytics } from './components/analytic';
+import { Overview } from './components/overview';
 import { Button } from '@/components/ui/button';
 import { ScrollArea } from '@/components/ui/scroll-area';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import Link from 'next/link';
 
 export default function page() {
   return (

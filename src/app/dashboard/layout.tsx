@@ -1,7 +1,7 @@
 import { SideBarWide } from './sidebar-wide';
-import { SideBarMobile } from './sidebar-mobile';
-import { AccountMenu } from './account-dropdown';
-import { SearchBar } from './serch-bar';
+import { SideBarMobile } from './components/sidebar-mobile';
+import { AccountMenu } from './components/account-dropdown';
+import { SearchBar } from './components/serch-bar';
 
 export default function DashboardLayout({
   children,
