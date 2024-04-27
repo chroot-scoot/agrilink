@@ -10,64 +10,9 @@ import {
   TableRow,
 } from '@/components/ui/table';
 import Link from 'next/link';
-const productDummyList = [
-  {
-    title: 'Product 1',
-    imageLink: '',
-    price: '$499.99',
-    totalSales: 25,
-    createdAt: '2023-07-12 10:42 AM',
-    rating: 4.8,
-    id: 1,
-  },
-  {
-    title: 'Product 2',
-    imageLink: '',
-    price: '$499.99',
-    totalSales: 25,
-    createdAt: '2023-07-12 10:42 AM',
-    rating: 4.8,
-    id: 2,
-  },
-  {
-    title: 'Product 3',
-    imageLink: '',
-    price: '$499.99',
-    totalSales: 25,
-    createdAt: '2023-07-12 10:42 AM',
-    rating: 4.8,
-    id: 3,
-  },
-  {
-    title: 'Product 4',
-    imageLink: '',
-    price: '$499.99',
-    totalSales: 25,
-    createdAt: '2023-07-12 10:42 AM',
-    rating: 4.8,
-    id: 4,
-  },
-  {
-    title: 'Product 5',
-    imageLink: '',
-    price: '$499.99',
-    totalSales: 25,
-    createdAt: '2023-07-12 10:42 AM',
-    rating: 4.8,
-    id: 5,
-  },
-  {
-    title: 'Product 6',
-    imageLink: '',
-    price: '$499.99',
-    totalSales: 25,
-    createdAt: '2023-07-12 10:42 AM',
-    rating: 4.8,
-    id: 6,
-  },
-];
 
 import { createClient } from '@/lib/supabase/server';
+import AddForm from '@/components/addForm';
 
 export default async function Product() {
   const supabase = createClient();
@@ -169,6 +114,7 @@ export default async function Product() {
           )}
         </TableBody>
       </Table>
+      <AddForm />
     </div>
   );
 }
