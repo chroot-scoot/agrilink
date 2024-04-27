@@ -7,6 +7,9 @@ settings:
 importers:
   .:
     dependencies:
+      '@google/generative-ai':
+        specifier: ^0.8.0
+        version: 0.8.0
       '@hookform/resolvers':
         specifier: ^3.3.4
         version: 3.3.4(react-hook-form@7.51.3(react@18.3.0))
@@ -487,6 +490,13 @@ packages:
       {
         integrity: sha512-9TANp6GPoMtYzQdt54kfAyMmz1+osLlXdg2ENroU7zzrtflTLrrC/lgrIfaSe+Wu0b89GKccT7vxXA0MoAIO+Q==,
       }
+
+  '@google/generative-ai@0.8.0':
+    resolution:
+      {
+        integrity: sha512-O55FgK1Jvl2JuJP1cnRHEAM8A4Lr3yKtjQrCn2QXOXVT+L5+o/nFQcx0/oIo3oq1Kq9TjjgewXyb9BBrK+Wd0A==,
+      }
+    engines: { node: '>=18.0.0' }
 
   '@hookform/resolvers@3.3.4':
     resolution:
@@ -5718,6 +5728,8 @@ snapshots:
       react-dom: 18.3.0(react@18.3.0)
 
   '@floating-ui/utils@0.2.1': {}
+
+  '@google/generative-ai@0.8.0': {}
 
   '@hookform/resolvers@3.3.4(react-hook-form@7.51.3(react@18.3.0))':
     dependencies:
