@@ -1,6 +1,4 @@
-'use client';
 import { ScrollArea } from '@/components/ui/scroll-area';
-import { Checkbox } from '@/components/ui/checkbox';
 import Image from 'next/image';
 import { Separator } from '@/components/ui/separator';
 import { Star } from 'lucide-react';
@@ -20,15 +18,10 @@ import {
   Users2,
 } from 'lucide-react';
 
+import { createClient } from '@/lib/supabase/server';
+
 import { Badge } from '@/components/ui/badge';
-import {
-  Breadcrumb,
-  BreadcrumbItem,
-  BreadcrumbLink,
-  BreadcrumbList,
-  BreadcrumbPage,
-  BreadcrumbSeparator,
-} from '@/components/ui/breadcrumb';
+
 import { Button } from '@/components/ui/button';
 import {
   Card,
@@ -38,14 +31,7 @@ import {
   CardHeader,
   CardTitle,
 } from '@/components/ui/card';
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuLabel,
-  DropdownMenuSeparator,
-  DropdownMenuTrigger,
-} from '@/components/ui/dropdown-menu';
+
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import {
@@ -55,45 +41,16 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select';
-import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
-import {
-  Table,
-  TableBody,
-  TableCell,
-  TableHead,
-  TableHeader,
-  TableRow,
-} from '@/components/ui/table';
 import { Textarea } from '@/components/ui/textarea';
-import { ToggleGroup, ToggleGroupItem } from '@/components/ui/toggle-group';
-import {
-  Tooltip,
-  TooltipContent,
-  TooltipTrigger,
-} from '@/components/ui/tooltip';
-import { title } from 'process';
 import React from 'react';
-export default function Dashboard({ params }: { params: any }) {
-  const products = {
-    title: params.productId,
-    badges: ['In Stock', 'Organic'],
-    description: `hello i am product ${params.productId}`,
-    reviews: [
-      {
-        title: 'review1',
-        description: 'review1 description',
-        author: 'author1',
-        rating: 4,
-      },
-      {
-        title: 'review2',
-        description: 'review2 description',
-        author: 'author1',
-        rating: 4,
-      },
-    ],
-    rating: 9,
-  };
+export default async function Dashboard({ params }: { params: any }) {
+  const supabase = createClient();
+
+  let { data: product_profiles, error } = await supabase
+    .from('product_profiles')
+    .select('*')
+    .eq('product_name', 'mango');
+  console.log(product_profiles);
 
   return (
     <>
@@ -109,19 +66,28 @@ export default function Dashboard({ params }: { params: any }) {
                   </Button>
                 </Link>
                 <h1 className="flex-1 shrink-0 whitespace-nowrap text-xl font-semibold tracking-tight sm:grow-0">
-                  {products.title}
+                  {product_profiles[0].product_name}
                 </h1>
-                {products.badges.map((badge, idx) => (
-                  <Badge
-                    key={idx}
-                    variant={
-                      badge == 'out of stock' ? 'destructive' : 'outline'
-                    }
-                    className="ml-auto sm:ml-0"
-                  >
-                    {badge}
+                {product_profiles[0].is_organic && (
+                  <Badge variant="outline" className="ml-auto sm:ml-0">
+                    Organic
                   </Badge>
-                ))}
+                )}
+                {product_profiles[0].is_seasonal && (
+                  <Badge variant="outline" className="ml-auto sm:ml-0">
+                    Seasonal
+                  </Badge>
+                )}
+                {product_profiles[0].product_inventory === 0 && (
+                  <Badge variant="destructive" className="ml-auto sm:ml-0">
+                    Out of Stock
+                  </Badge>
+                )}
+                {product_profiles[0].product_inventory != 0 && (
+                  <Badge variant="outline" className="ml-auto sm:ml-0">
+                    In Stock
+                  </Badge>
+                )}
                 <div className="hidden items-center gap-2 md:ml-auto md:flex">
                   <Button variant="outline" size="sm">
                     Discard
@@ -134,7 +100,9 @@ export default function Dashboard({ params }: { params: any }) {
                   <Card x-chunk="dashboard-07-chunk-0">
                     <CardHeader>
                       <CardTitle>Product Details</CardTitle>
-                      <CardDescription>{products.description}</CardDescription>
+                      <CardDescription>
+                        {product_profiles[0].about_product}
+                      </CardDescription>
                     </CardHeader>
                     <CardContent>
                       <div className="grid gap-6">
@@ -144,14 +112,14 @@ export default function Dashboard({ params }: { params: any }) {
                             id="name"
                             type="text"
                             className="w-full"
-                            defaultValue={products.title}
+                            defaultValue={product_profiles[0].product_name}
                           />
                         </div>
                         <div className="grid gap-3">
                           <Label htmlFor="description">Description</Label>
                           <Textarea
                             id="description"
-                            defaultValue={products.description}
+                            defaultValue={product_profiles[0].about_product}
                             className="min-h-32"
                           />
                         </div>
@@ -162,42 +130,10 @@ export default function Dashboard({ params }: { params: any }) {
                     <CardHeader>
                       <CardTitle>Product Category</CardTitle>
                     </CardHeader>
-                    <CardContent>
-                      <div className="grid gap-6 sm:grid-cols-3">
-                        <Checkbox id="organic" />
-                        <label htmlFor="organic" className="">
-                          Organic
-                        </label>
-                      </div>
-                      <div className="grid gap-6 sm:grid-cols-3">
-                        <Checkbox id="seasonal" />
-                        <label htmlFor="seasonal">Seasonal</label>
-                      </div>
-                    </CardContent>
+                    <CardContent></CardContent>
                   </Card>
                   <Card>
-                    <ScrollArea className="h-72  rounded-md border">
-                      <div className="p-4">
-                        <h4 className="mb-4 text-sm font-medium leading-none">
-                          Reviews
-                        </h4>
-                        {products.reviews.map((review, index) => (
-                          <React.Fragment key={index}>
-                            <Card>
-                              <CardHeader>
-                                <CardTitle>{review.title}</CardTitle>
-                                <CardDescription>
-                                  {review.author}
-                                </CardDescription>
-                              </CardHeader>
-                              <CardContent>{review.description}</CardContent>
-                              <CardFooter>{review.rating}</CardFooter>
-                            </Card>
-                            <Separator className="my-2" />
-                          </React.Fragment>
-                        ))}
-                      </div>
-                    </ScrollArea>
+                    <ScrollArea className="h-72  rounded-md border"></ScrollArea>
                   </Card>
                 </div>
                 <div className="grid auto-rows-max items-start gap-4 lg:gap-8">
@@ -271,11 +207,13 @@ export default function Dashboard({ params }: { params: any }) {
                     <CardHeader>
                       <CardTitle>Rating of Product</CardTitle>
                       <CardDescription>
-                        {products.rating} out of 5
+                        {product_profiles[0].product_inventory} out of 5
                       </CardDescription>
                     </CardHeader>
                     <CardContent className="flex">
-                      {Array.from({ length: products.rating }).map((_, idx) => (
+                      {Array.from({
+                        length: product_profiles[0].product_inventory,
+                      }).map((_, idx) => (
                         <Star key={idx} />
                       ))}
                     </CardContent>
