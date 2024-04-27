@@ -32,11 +32,13 @@ async function getProducts() {
 export default async function product() {
   const Products = await getProducts();
   return (
-    <div className="relative min-h-screen">
-      <div className="max-w-5xl pl-8">
-        <HoverEffect items={Products} />
+    <>
+      <div className="relative min-h-screen">
+        <div className="max-w-5xl pl-8">
+          <HoverEffect items={Products} />
+        </div>
+        <AddForm />
       </div>
-      <AddForm />
-    </div>
+    </>
   );
 }
