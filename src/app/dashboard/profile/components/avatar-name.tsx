@@ -7,7 +7,7 @@ export default function AboutStoreTile() {
   // const { data: profiles } = await supabase.from('profiles').select();
   return (
     <>
-      <div className="top-1 grid grid-cols-1 items-start gap-1 md:grid-cols-2">
+      <div className="flex flex-col md:flex-row">
         <div className="h-48 w-48 min-w-48" style={{ marginTop: '2vw' }}>
           <Image
             src="/store-front.png"
