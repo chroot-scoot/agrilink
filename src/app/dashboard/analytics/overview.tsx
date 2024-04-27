@@ -8,22 +8,26 @@ import {
   CardHeader,
   CardTitle,
 } from '@/components/ui/card';
-import { llmResponse } from './llm';
+import { llmResponse } from '../../api/llm/llm';
 
 export function Overview() {
-  const [summary, setSummary] = useState(null);
+  const [data, setData] = useState(null);
 
   useEffect(() => {
-    async function fetchSummary() {
+    async function fetchData() {
       try {
-        const result = await llmResponse();
-        setSummary(result);
+        const response = await fetch('/api/llm/route'); // Replace '/api/route' with your actual API route
+        if (!response.ok) {
+          throw new Error('Failed to fetch data');
+        }
+        const data = await response.json();
+        setData(data);
       } catch (error) {
-        console.error('Error fetching summary:', error);
+        console.error('Error fetching data:', error);
       }
     }
 
-    fetchSummary();
+    fetchData();
   }, []);
 
   return (
@@ -31,7 +35,7 @@ export function Overview() {
       <div className="grid gap-4 md:grid-cols-4 lg:grid-cols-1">
         <Card>
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">Total Revenue</CardTitle>
+            <CardTitle className="text-sm font-medium">Overview: </CardTitle>
             <svg
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 24 24"
@@ -47,9 +51,9 @@ export function Overview() {
           </CardHeader>
 
           <CardContent>
-            {summary !== null ? (
+            {data !== null ? (
               <>
-                <div className="text-2xl font-bold">{summary}</div>
+                <div className="text-2xl font-bold">{data}</div>
                 <p className="text-xs text-muted-foreground">
                   +20.1% from last month
                 </p>
