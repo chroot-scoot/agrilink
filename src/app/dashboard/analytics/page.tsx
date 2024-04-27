@@ -1,5 +1,6 @@
 import { CalendarDateRangePicker } from './date-range-picker';
 import { Analytics } from './analytic';
+import { Overview } from './overview';
 import { Button } from '@/components/ui/button';
 import { ScrollArea } from '@/components/ui/scroll-area';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
@@ -24,7 +25,9 @@ export default function page() {
           <TabsContent value="analytics" className="space-y-4">
             <Analytics />
           </TabsContent>
-          <TabsContent value="overview"></TabsContent>
+          <TabsContent value="overview">
+            <Overview />
+          </TabsContent>
         </Tabs>
       </div>
     </ScrollArea>
