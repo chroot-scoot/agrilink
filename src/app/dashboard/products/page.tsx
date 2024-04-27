@@ -1,5 +1,5 @@
 import { HoverEffect } from '@/components/ui/card-hover-effect';
-
+import AddForm from '@/components/addForm';
 async function getProducts() {
   return [
     {
@@ -32,8 +32,13 @@ async function getProducts() {
 export default async function product() {
   const Products = await getProducts();
   return (
-    <div className="mx-auto max-w-5xl px-8">
-      <HoverEffect items={Products} />
-    </div>
+    <>
+      <div className="relative min-h-screen">
+        <div className="max-w-5xl pl-8">
+          <HoverEffect items={Products} />
+        </div>
+        <AddForm />
+      </div>
+    </>
   );
 }
