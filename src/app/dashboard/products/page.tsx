@@ -20,23 +20,7 @@ export default async function Product() {
     .from('product_profiles')
     .select('*')
     // Filters
-    .eq('store_id', 'c8b78fe2-2a9a-4910-9e29-267f9c8d0e12');
-
-  let productIds = product_profiles!.map((profile) => profile.product_id);
-  let { data: product_images } = await supabase
-    .from('product_images')
-    .select('product_image_url, product_id')
-    .in('product_id', productIds);
-
-  product_profiles = product_profiles!.map((profile) => {
-    const image = product_images!.find(
-      (image) => image.product_id === profile.product_id
-    );
-    return {
-      ...profile,
-      product_image_url: image ? image.product_image_url : null,
-    };
-  });
+    .eq('store_id', 'be348973-75b4-4d3d-85a8-d94403eadbc1');
 
   return (
     <div className="flex-1 space-y-4 p-4 pt-6 md:p-8">
@@ -60,7 +44,7 @@ export default async function Product() {
           </TableRow>
         </TableHeader>
         <TableBody>
-          {product_profiles.map(
+          {product_profiles!.map(
             (
               {
                 product_name,

@@ -50,7 +50,11 @@ export default async function Dashboard({ params }: { params: any }) {
     .from('product_profiles')
     .select('*')
     .eq('product_id', params.productId);
-  console.log(product_profiles);
+
+  let { data: products_reviews } = await supabase
+    .from('product_reviews')
+    .select('*')
+    .eq('product_id', params.productId);
 
   return (
     <>
@@ -133,7 +137,32 @@ export default async function Dashboard({ params }: { params: any }) {
                     <CardContent></CardContent>
                   </Card>
                   <Card>
-                    <ScrollArea className="h-72  rounded-md border"></ScrollArea>
+                    <ScrollArea className="h-72  rounded-md border">
+                      <div className="p-4">
+                        <h4 className="mb-4 text-sm font-medium leading-none">
+                          Reviews
+                        </h4>
+                        {products_reviews!.map((review, index) => (
+                          <React.Fragment key={index}>
+                            <Card>
+                              <CardHeader>
+                                <CardTitle>{`Review`}</CardTitle>
+                                <CardDescription>
+                                  {review.product_reviewer}
+                                </CardDescription>
+                              </CardHeader>
+                              <CardContent>
+                                {review.product_review_content}
+                              </CardContent>
+                              <CardFooter>
+                                {review.given_product_rating}
+                              </CardFooter>
+                            </Card>
+                            <Separator className="my-2" />
+                          </React.Fragment>
+                        ))}
+                      </div>
+                    </ScrollArea>
                   </Card>
                 </div>
                 <div className="grid auto-rows-max items-start gap-4 lg:gap-8">
@@ -207,12 +236,12 @@ export default async function Dashboard({ params }: { params: any }) {
                     <CardHeader>
                       <CardTitle>Rating of Product</CardTitle>
                       <CardDescription>
-                        {product_profiles![0].product_inventory} out of 5
+                        {product_profiles![0].product_rating} out of 5
                       </CardDescription>
                     </CardHeader>
                     <CardContent className="flex">
                       {Array.from({
-                        length: product_profiles![0].product_inventory / 100,
+                        length: product_profiles![0].product_rating,
                       }).map((_, idx) => (
                         <Star key={idx} />
                       ))}
