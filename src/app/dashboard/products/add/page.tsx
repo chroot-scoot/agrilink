@@ -29,7 +29,7 @@ export default function Adpage() {
         ...formState,
         category: {
           ...formState.category,
-          [e.target.id]: e.target.checked,
+          [e.target.name]: e.target.checked,
         },
       });
     } else {
@@ -69,56 +69,64 @@ export default function Adpage() {
     }, 0);
   };
   return (
-    <Card className="z-10 mx-auto max-w-sm">
-      <CardHeader>
-        <CardTitle className="text-2xl">Add Product</CardTitle>
-        <CardDescription>Add Details Here</CardDescription>
-      </CardHeader>
-      <CardContent>
-        <form onSubmit={handleSubmit}>
-          <Label id="product_name">Product Name</Label>
-          <Input
-            id="product_name"
-            name="product_name"
-            type="text"
-            placeholder="Product Name"
-            required
-            onChange={handleChange}
-          />
+    <div className="flex flex-grow flex-col items-center justify-center">
+      <Card className="z-10 max-h-[70%] w-[35%]">
+        <CardHeader>
+          <CardTitle className="text-2xl">Add Product</CardTitle>
+          <CardDescription>Add Details Here</CardDescription>
+        </CardHeader>
+        <CardContent>
+          <form onSubmit={handleSubmit}>
+            <div className="flex-col justify-normal gap-1">
+              <Label id="product_name">Product Name</Label>
+              <Input
+                id="product_name"
+                name="product_name"
+                type="text"
+                placeholder="Product Name"
+                required
+                onChange={handleChange}
+              />
+              <Label id="about_product">About Product</Label>
+              <Input
+                id="about_product"
+                name="about_product"
+                type="text"
+                placeholder="About Product"
+                required
+                onChange={handleChange}
+              />
+              <Label id="product_price">Product Price</Label>
+              <Input
+                id="product_price"
+                name="product_price"
+                type="number"
+                placeholder="Product Price"
+                required
+                onChange={handleChange}
+              />
+            </div>
+            <div className="mt-5 flex justify-around">
+              <Label id="is_organic">Is Organic?</Label>
+              <Checkbox
+                name="is_organic"
+                id="is_organic"
+                onChange={handleChange}
+              />
 
-          <Label id="about_product">About Product</Label>
-          <Input
-            id="about_product"
-            name="about_product"
-            type="text"
-            placeholder="About Product"
-            required
-            onChange={handleChange}
-          />
-
-          <Label id="product_price">Product Price</Label>
-          <Input
-            id="product_price"
-            name="product_price"
-            type="number"
-            placeholder="Product Price"
-            required
-            onChange={handleChange}
-          />
-
-          <Label id="is_organic">Is Organic?</Label>
-          <Checkbox name="is_organic" id="is_organic" onChange={handleChange} />
-
-          <Label id="is_seasonal">Is Seasonal?</Label>
-          <Checkbox
-            id="is_seasonal"
-            name="is_seasonal"
-            onChange={handleChange}
-          />
-
-          <Button type="submit">Submit</Button>
-        </form>
-      </CardContent>
-    </Card>
+              <Label id="is_seasonal">Is Seasonal?</Label>
+              <Checkbox
+                id="is_seasonal"
+                name="is_seasonal"
+                onChange={handleChange}
+              />
+            </div>
+            <div className="mt-5">
+              <Button type="submit">Submit</Button>
+            </div>
+          </form>
+        </CardContent>
+      </Card>
+    </div>
   );
 }
