@@ -18,7 +18,7 @@ export async function llmResponse(productId: string) {
     return;
   }
 
-  const prompt = `Summarize all the reviews in the given JSON file: ${data} to two simple lines.`;
+  const prompt = `Summarize all the reviews in the given JSON file: ${JSON.stringify(data)} to two simple lines.`;
 
   const result = await model.generateContent(prompt);
   const response = (await result.response).text();
