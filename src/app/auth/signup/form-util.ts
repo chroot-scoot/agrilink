@@ -6,8 +6,7 @@ import { toast } from '@/components/ui/use-toast';
 import { createClient } from '@/lib/supabase/server';
 
 export const signupFormSchema = z.object({
-  firstname: z.string().min(2),
-  lastname: z.string().min(2),
+  storename: z.string().min(2),
   email: z.string().email({ message: 'Please provide a valid Email' }),
   password: z
     .string()
@@ -17,8 +16,7 @@ export const signupFormSchema = z.object({
 export type ISignupForm = z.infer<typeof signupFormSchema>;
 
 export async function submitSignup(formData: ISignupForm) {
-  const firstname = formData.firstname;
-  const lastname = formData.lastname;
+  const storename = formData.storename;
   const email = formData.email;
   const password = formData.password;
   const supabase = createClient();

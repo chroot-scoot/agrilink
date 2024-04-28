@@ -2,7 +2,7 @@
 
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
-
+import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import {
   Form,
@@ -10,6 +10,7 @@ import {
   FormField,
   FormItem,
   FormLabel,
+  FormMessage,
 } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
 
@@ -26,28 +27,15 @@ export function SignupForm() {
         <div className="grid gap-4">
           <FormField
             control={form.control}
-            name="firstname"
+            name="storename"
             render={({ field }) => (
               <FormItem>
                 <div className="grid gap-2">
                   <FormLabel>Firstname</FormLabel>
                   <FormControl>
-                    <Input placeholder="Rajendra" {...field} />
+                    <Input placeholder="Gajendra Farm" {...field} />
                   </FormControl>
-                </div>
-              </FormItem>
-            )}
-          />
-          <FormField
-            control={form.control}
-            name="lastname"
-            render={({ field }) => (
-              <FormItem>
-                <div className="grid gap-2">
-                  <FormLabel>Lastname</FormLabel>
-                  <FormControl>
-                    <Input placeholder="Suthar" {...field} />
-                  </FormControl>
+                  <FormMessage />
                 </div>
               </FormItem>
             )}
@@ -62,6 +50,7 @@ export function SignupForm() {
                   <FormControl>
                     <Input placeholder="m@example.com" {...field} />
                   </FormControl>
+                  <FormMessage />
                 </div>
               </FormItem>
             )}
@@ -74,14 +63,20 @@ export function SignupForm() {
                 <div className="grid gap-2">
                   <FormLabel>Password</FormLabel>
                   <FormControl>
-                    <Input placeholder="****" />
+                    <Input
+                      placeholder="&#9679;&#9679;&#9679;&#9679;&#9679;"
+                      type="password"
+                    />
                   </FormControl>
+                  <FormMessage />
                 </div>
               </FormItem>
             )}
           />
-          <Button type="submit" className="w-full">
-            Login
+          <Button className="w-full">
+            <Link href="/dashboard" className="w-full">
+              Login
+            </Link>
           </Button>
         </div>
       </form>
