@@ -2,12 +2,11 @@ import { CalendarDateRangePicker } from './components/date-range-picker';
 import { Analytics } from './components/analytic';
 import { Overview } from './components/overview';
 import { Button } from '@/components/ui/button';
-import { ScrollArea } from '@/components/ui/scroll-area';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 
 export default function page() {
   return (
-    <ScrollArea className="h-full">
+    <>
       <div className="flex-1 space-y-4 p-4 pt-6 md:p-8">
         <div className="flex flex-col items-center justify-between space-y-2 md:flex-row">
           <h2 className="text-3xl font-bold tracking-tight">Analytics</h2>
@@ -29,6 +28,6 @@ export default function page() {
           </TabsContent>
         </Tabs>
       </div>
-    </ScrollArea>
+    </>
   );
 }

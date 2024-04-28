@@ -15,7 +15,7 @@ export function AccountMenu() {
       <DropdownMenuTrigger asChild>
         <Button variant="secondary" size="icon" className="rounded-full">
           <Avatar>
-            <AvatarImage src="https://github.com/shadcn.png" />
+            <AvatarImage src="/randy-the-farmer-who-gonna-farm-ur-ass.webp" />
             <AvatarFallback>CN</AvatarFallback>
           </Avatar>
           <span className="sr-only">Toggle user menu</span>
