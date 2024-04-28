@@ -270,7 +270,7 @@ export default function Mails({
         }}
         className="h-full max-h-[800px] items-stretch"
       >
-        <ResizableHandle withHandle />
+        {/* <ResizableHandle withHandle /> */}
         <ResizablePanel defaultSize={defaultLayout[0]} minSize={30}>
           <Tabs defaultValue="all">
             <div className="flex items-center px-4 py-2">

@@ -85,7 +85,7 @@ export function SideBarMobile() {
             )
           )}
         </nav>
-        <div className="mt-auto">
+        {/* <div className="mt-auto">
           <Card>
             <CardHeader>
               <CardTitle>Upgrade to Pro</CardTitle>
@@ -100,7 +100,7 @@ export function SideBarMobile() {
               </Button>
             </CardContent>
           </Card>
-        </div>
+        </div> */}
       </SheetContent>
     </Sheet>
   );

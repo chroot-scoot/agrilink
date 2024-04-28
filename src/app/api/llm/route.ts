@@ -1,14 +1,20 @@
-import { createClient } from '@/lib/supabase/server';
+import { NextRequest, NextResponse } from 'next/server';
+import { llmResponse } from './llm';
 
-export async function exchangeCodeForSession(url: string) {
-  const requestUrl = new URL(url);
-  const code = requestUrl.searchParams.get('code');
+export async function GET(request: NextRequest) {
+  const { searchParams } = new URL(request.url);
+  const productId = searchParams.get('product_id');
 
-  if (code) {
-    const supabase = createClient();
-    await supabase.auth.exchangeCodeForSession(code);
+  if (!productId) {
+    NextResponse.error();
+    return;
+  }
+  const res = await llmResponse(productId);
+
+  if (!res) {
+    NextResponse.error();
+    return;
   }
 
-  // URL to redirect to after sign up process completes
-  return `${requestUrl.origin}/protected`;
+  NextResponse.json({ res });
 }
