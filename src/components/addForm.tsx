@@ -20,7 +20,7 @@ export default function AddForm() {
     <>
       <Link
         href="/dashboard/products/add"
-        className="ml-auto inline-block text-sm underline"
+        className="ml-auto inline-block p-4 text-sm underline"
       >
         <Button variant="outline">Add Product</Button>
       </Link>
