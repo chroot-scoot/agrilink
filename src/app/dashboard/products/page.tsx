@@ -15,6 +15,7 @@ import Link from 'next/link';
 import { createClient } from '@/lib/supabase/server';
 import AddForm from '@/components/addForm';
 import { Separator } from '@/components/ui/separator';
+import { Button } from '@/components/ui/button';
 
 export default async function Product() {
   const supabase = createClient();
@@ -28,9 +29,12 @@ export default async function Product() {
     <div className="fixed overflow-hidden">
       <div className="min-w-screen h-fit w-screen flex-1 space-y-4 pl-2 md:pl-4">
         <Tabs defaultValue="all">
-          <div className="flex flex-col items-center justify-between space-y-2 md:flex-row">
+          <div className="flex w-fit max-w-fit items-center justify-between gap-96 space-y-2 md:flex-row">
             <h1 className="text-3xl font-bold tracking-tight">Products</h1>
-            <AddForm />
+            {/* <AddForm /> */}
+            <Link href="/dashboard/products/add" className="p-5">
+              <Button variant="outline">Add Product</Button>
+            </Link>
           </div>
           <Separator />
           <TabsContent value="all" className="min-w-screen mt-2 w-screen">
