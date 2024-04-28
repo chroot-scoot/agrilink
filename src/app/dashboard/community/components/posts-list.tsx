@@ -1,33 +1,29 @@
-import { ComponentProps } from 'react';
-// import formatDistanceToNow from 'date-fns/formatDistanceToNow';
 import { formatDistanceToNow } from 'date-fns';
 import { cn } from '@/lib/utils';
-import { Badge } from '@/components/ui/badge';
 import { ScrollArea } from '@/components/ui/scroll-area';
-import { Separator } from '@/components/ui/separator';
-import { Mail } from '@/app/dashboard/community/data';
-import { useMail } from '@/app/dashboard/community/use-mail';
+import { Post } from '@/app/dashboard/community/data';
+import { usePost } from '@/app/dashboard/community/use-post';
 
-interface MailListProps {
-  items: Mail[];
+interface PostListProps {
+  items: Post[];
 }
 
-export function MailList({ items }: MailListProps) {
-  const [mail, setMail] = useMail();
+export function PostList({ items: posts }: PostListProps) {
+  const [post, setPost] = usePost();
 
   return (
     <ScrollArea className="h-screen">
       <div className="flex flex-col gap-2 p-4 pt-0">
-        {items.map((item) => (
+        {posts.map((item) => (
           <button
             key={item.id}
             className={cn(
               'flex flex-col items-start gap-2 rounded-lg border p-3 text-left text-sm transition-all hover:bg-accent',
-              mail.selected === item.id && 'bg-muted'
+              post.selected === item.id && 'bg-muted'
             )}
             onClick={() =>
-              setMail({
-                ...mail,
+              setPost({
+                ...post,
                 selected: item.id,
               })
             }
@@ -35,7 +31,7 @@ export function MailList({ items }: MailListProps) {
             <div className="flex w-full flex-col gap-1">
               <div className="flex items-center">
                 <div className="flex items-center gap-2">
-                  <div className="font-semibold">{item.name}</div>
+                  <div className="font-semibold">{item.subject}</div>
                   {!item.read && (
                     <span className="flex h-2 w-2 rounded-full bg-blue-600" />
                   )}
@@ -43,7 +39,7 @@ export function MailList({ items }: MailListProps) {
                 <div
                   className={cn(
                     'ml-auto text-xs',
-                    mail.selected === item.id
+                    post.selected === item.id
                       ? 'text-foreground'
                       : 'text-muted-foreground'
                   )}
@@ -53,37 +49,14 @@ export function MailList({ items }: MailListProps) {
                   })}
                 </div>
               </div>
-              <div className="text-xs font-medium">{item.subject}</div>
+              <div className="text-xs font-medium">{item.name}</div>
             </div>
             <div className="line-clamp-2 text-xs text-muted-foreground">
               {item.text.substring(0, 300)}
             </div>
-            {item.labels.length ? (
-              <div className="flex items-center gap-2">
-                {item.labels.map((label) => (
-                  <Badge key={label} variant={getBadgeVariantFromLabel(label)}>
-                    {label}
-                  </Badge>
-                ))}
-              </div>
-            ) : null}
           </button>
         ))}
       </div>
     </ScrollArea>
   );
-}
-
-function getBadgeVariantFromLabel(
-  label: string
-): ComponentProps<typeof Badge>['variant'] {
-  if (['work'].includes(label.toLowerCase())) {
-    return 'default';
-  }
-
-  if (['personal'].includes(label.toLowerCase())) {
-    return 'outline';
-  }
-
-  return 'secondary';
 }
