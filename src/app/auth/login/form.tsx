@@ -56,14 +56,19 @@ export function LoginForm() {
                     </Link>
                   </div>
                   <FormControl>
-                    <Input placeholder="****" />
+                    <Input
+                      placeholder="&#9679;&#9679;&#9679;&#9679;&#9679;"
+                      type="password"
+                    />
                   </FormControl>
                 </div>
               </FormItem>
             )}
           />
-          <Button type="submit" className="w-full">
-            Login
+          <Button className="w-full">
+            <Link href="/dashboard" className="w-full">
+              Login
+            </Link>
           </Button>
         </div>
       </form>
