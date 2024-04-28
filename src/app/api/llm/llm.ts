@@ -16,7 +16,7 @@ export async function llmResponse() {
   let { data: product_reviews, error } = await supabase
     .from('product_reviews')
     .select('product_review_content')
-    .eq('product_id', '1');
+    .eq('product_id', 'dfa01413-e753-449a-8804-5d10c12716ae');
 
   // Read the JSON file
   const fileContent = await readFile('product_reviews', 'utf8');

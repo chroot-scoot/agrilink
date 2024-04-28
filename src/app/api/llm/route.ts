@@ -1,9 +1,20 @@
-import { createClient } from '@/lib/supabase/server';
+import { NextRequest, NextResponse } from 'next/server';
 import { llmResponse } from './llm';
 
-export async function GET() {
-  const response = await llmResponse();
-  const res = await fetch(response);
+export async function GET(request: NextRequest) {
+  const { searchParams } = new URL(request.url);
+  const productId = 'dfa01413-e753-449a-8804-5d10c12716ae';
 
-  return Response.json(res);
+  if (!productId) {
+    NextResponse.error();
+    return;
+  }
+  const res = await llmResponse();
+
+  if (!res) {
+    NextResponse.error();
+    return;
+  }
+
+  NextResponse.json({ res });
 }

@@ -1,35 +1,29 @@
-'use client';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { createClient } from '@/lib/supabase/server';
 
-import { useState, useEffect } from 'react';
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from '@/components/ui/card';
-import { llmResponse } from '../../api/llm/llm';
+async function fetchData() {
+  try {
+    const supabase = createClient();
+    const storeId = 'dfa01413-e753-449a-8804-5d10c12716ae';
+    const { data: product_reviews } = await supabase
+      .from('product_reviews')
+      .select()
+      .eq('product_id', storeId);
 
-export function Overview() {
-  const [data, setData] = useState(null);
-
-  useEffect(() => {
-    async function fetchData() {
-      try {
-        const response = await fetch('/api/llm/route'); // Replace '/api/route' with your actual API route
-        if (!response.ok) {
-          throw new Error('Failed to fetch data');
-        }
-        const data = await response.json();
-        setData(data);
-      } catch (error) {
-        console.error('Error fetching data:', error);
-      }
+    const llmedResponse = await fetch('@/app/api/llm');
+    if (llmedResponse.ok) {
+      const llmedData = await llmedResponse.json();
+      return llmedData;
+    } else {
+      throw new Error('Failed to fetch LLM data');
     }
+  } catch (error) {
+    console.error('Error fetching data:', error);
+    return 'ERROR';
+  }
+}
 
-    fetchData();
-  }, []);
-
+export default function Reviews() {
   return (
     <>
       <div className="grid gap-4 md:grid-cols-4 lg:grid-cols-1">
@@ -51,16 +45,8 @@ export function Overview() {
           </CardHeader>
 
           <CardContent>
-            {data !== null ? (
-              <>
-                <div className="text-2xl font-bold">{data}</div>
-                <p className="text-xs text-muted-foreground">
-                  +20.1% from last month
-                </p>
-              </>
-            ) : (
-              <p>Loading...</p>
-            )}
+            <div className="text-2xl font-bold"></div>
+            <p className="text-xs text-muted-foreground">{fetchData()}</p>
           </CardContent>
         </Card>
       </div>
